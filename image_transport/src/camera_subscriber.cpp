@@ -138,7 +138,7 @@ CameraSubscriber::CameraSubscriber(
 
   impl_->image_sub_.subscribe(node, image_topic, transport, custom_qos);
   impl_->info_sub_.subscribe(node, info_topic,
-    rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(custom_qos)));
+    rclcpp::QoS(rclcpp::QoSInitialization::from_rmw(custom_qos), custom_qos));
 
   impl_->sync_.connectInput(impl_->image_sub_, impl_->info_sub_);
   impl_->sync_.registerCallback(std::bind(callback, std::placeholders::_1, std::placeholders::_2));
